@@ -11,10 +11,10 @@ def main():
     search_terms = st.text_input("Enter Search Term:", "deepmind")
 
     # User input for replace_more limit
-    replace_more_limit = st.slider("Replace More Limit", min_value=0, max_value=100, value=0)
+    replace_more_limit = st.slider("Replace More Limit (replies to comments)", min_value=0, max_value=100, value=0)
 
     # User input for search results limit
-    search_results_limit = st.slider("Search Results Limit", min_value=1, max_value=1000, value=100)
+    search_results_limit = st.slider("Search Results Limit (includes comments under the post -no sub comments-)", min_value=1, max_value=100, value=10)
 
     # Button to trigger data retrieval
     if st.button("Search"):
