@@ -6,9 +6,14 @@ import praw
 def main():
     st.title("Reddit scraper")
 
-    # User input for subreddit and search term
+    # User input for subreddit
     subreddit_name = st.text_input("Enter Subreddit Name:", "chatgpt")
-    search_terms = st.text_input("Enter Search Term:", "deepmind")
+
+    # Checkbox to toggle between searching the whole subreddit and using a search term
+    use_search_term = st.checkbox("Use Search Term")
+
+    # User input for search term (if checkbox is selected)
+    search_terms = st.text_input("Enter Search Term:", "") if use_search_term else ""
 
     # User input for replace_more limit
     replace_more_limit = st.slider("Replace More Limit (replies to comments)", min_value=0, max_value=100, value=0)
@@ -32,7 +37,12 @@ def main():
 
         # Retrieve subreddit and search results
         subreddit = reddit.subreddit(subreddit_name)
-        results = subreddit.search(query=search_terms, limit=search_results_limit)
+
+        if use_search_term:
+            results = subreddit.search(query=search_terms, limit=search_results_limit)
+        else:
+            results = subreddit.hot(limit=search_results_limit)
+
         print(f"Retrieved {search_results_limit} Reddit results")
 
         # Collect data
@@ -66,4 +76,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
