@@ -67,4 +67,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-I want to Add a button to toggle for the app to search the whole subreddit without a speciric search term
